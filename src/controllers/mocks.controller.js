@@ -4,27 +4,23 @@ import bcrypt from 'bcrypt';
 import { generateMockUsers, generateMockPets } from '../utils/mocking.js';
 import { DEFAULT_PASSWORD, BCRYPT_SALT_ROUNDS } from '../config/constants.js';
 
-/**
- * Genera 100 mascotas falsas e inserta en la base de datos.
- */
+
+
 export const generateMockPetsController = async (req, res, next) => {
     try {
         const fakePets = generateMockPets(100);
-        const insertedPets = await PetModel.insertMany(fakePets);
 
-        res.status(201).json({
+        res.status(200).json({
             status: 'success',
-            message: `Se insertaron ${insertedPets.length} mascotas falsas correctamente.`,
-            payload: insertedPets,
+            message: 'Se generaron 100 mascotas falsas (sin guardar en DB).',
+            payload: fakePets,
         });
     } catch (error) {
         next(error);
     }
 };
 
-/**
- * Genera 50 usuarios falsos (no se insertan en la base de datos).
- */
+
 export const generateMockUsersController = async (req, res, next) => {
     try {
         const rawUsers = generateMockUsers(50);
@@ -36,7 +32,7 @@ export const generateMockUsersController = async (req, res, next) => {
             }))
         );
 
-        res.json({
+        res.status(200).json({
             status: 'success',
             message: `Se generaron ${usersWithHashedPasswords.length} usuarios falsos (sin guardar en DB).`,
             payload: usersWithHashedPasswords,
@@ -48,7 +44,7 @@ export const generateMockUsersController = async (req, res, next) => {
 
 /**
  * Genera e inserta en la base de datos la cantidad indicada de usuarios y mascotas.
- * Requiere en el body: { users: number, pets: number }
+ *{ users: number, pets: number }
  */
 export const generateDataController = async (req, res, next) => {
     try {

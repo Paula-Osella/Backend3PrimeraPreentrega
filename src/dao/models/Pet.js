@@ -7,7 +7,7 @@ const schema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  species: {           // ✅ Cambiar de specie → species
+  species: {          
     type: String,
     required: true,
   },
@@ -19,7 +19,7 @@ const schema = new mongoose.Schema({
   owner: {
     type: mongoose.SchemaTypes.ObjectId,
     ref: 'Users',
-    default: null        // ✅ Esto lo agrega para que no dé error si se envía null
+    default: null        
   },
   image: String,
 });

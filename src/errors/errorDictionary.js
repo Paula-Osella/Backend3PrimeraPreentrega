@@ -1,4 +1,4 @@
-// src/errors/errorDictionary.js
+
 export const ERRORES = {
     USUARIO_EMAIL_INVALIDO: {
       code: 1001,

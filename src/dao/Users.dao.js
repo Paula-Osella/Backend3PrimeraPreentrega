@@ -22,4 +22,11 @@ export default class Users {
     delete = (id) =>{
         return userModel.findByIdAndDelete(id);
     }
+     addDocuments = (uid, docs) => {
+        return userModel.findByIdAndUpdate(
+            uid,
+            { $push: { documents: { $each: docs } } },
+            { new: true }
+        );
+    };
 }

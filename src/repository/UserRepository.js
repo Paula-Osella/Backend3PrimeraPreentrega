@@ -12,5 +12,8 @@ export default class UserRepository extends GenericRepository{
     getUserById = (id) =>{
         return this.getBy({_id:id})
     }
+    addDocuments = (uid, docs) => {
+        return this.dao.addDocuments(uid, docs);
+    };
     
 }
